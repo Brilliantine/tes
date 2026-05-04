@@ -41,9 +41,19 @@ run_emulator:
   image: reactnativecommunity/react-native-android:latest
   tags:
     - android
-  script:
+  before_script:
+    - echo "Начинаем настройку..."
+    - # Устанавливаем образ системы, если его нет в кэше образа
     - echo "y" | sdkmanager --install "system-images;android-29;default;x86"
+    - # Создаем виртуальное устройство (AVD)
     - echo "no" | avdmanager create avd -n ci_device -k "system-images;android-29;default;x86" --force
+  script:
+    - echo "Запускаем эмулятор..."
+    - # Запускаем в фоновом режиме (&), без окна и звука
     - $ANDROID_HOME/emulator/emulator -avd ci_device -no-window -no-audio -gpu swiftshader_indirect &
+    - # Ждем, пока устройство появится в списке ADB
     - adb wait-for-device
-    - echo "Эмулятор готов! Дальше – твои тесты."
+    - echo "Эмулятор готов! Здесь будут твои первые тесты."
+    - # Небольшая пауза, чтобы эмулятор точно "проснулся"
+    - sleep 10
+    - echo "Всё работает!"
