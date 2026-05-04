@@ -32,7 +32,7 @@ services:
       - '/dev/kvm:/dev/kvm'                 # <-- магия для эмулятора
       - './gitlab-runner/config:/etc/gitlab-runner'
 
-      Step 7: 
+      Step 7: .gitlab-ci.yml
       stages:
   - test
 
