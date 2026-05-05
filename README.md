@@ -1,1 +1,1 @@
-docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' gitlab
+1
