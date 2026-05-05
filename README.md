@@ -52,3 +52,11 @@ run_emulator:
     - echo "Эмулятор готов! Здесь будут твои первые тесты."
     - sleep 10
     - echo "Всё работает!"
+
+          Fetching changes with git depth set to 20...
+Reinitialized existing Git repository in /builds/root/rzd/.git/
+Created fresh repository.
+fatal: unable to access 'http://gitlab.local/root/rzd.git/': Could not resolve host: gitlab.local
+Cleaning up project directory and file based variables
+
+
