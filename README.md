@@ -1,21 +1,26 @@
-stages:
-  - test
-
-run_emulator:
-  stage: test
-  image: androidsdk/android-30:latest  # <-- Новый образ
-  tags:
-    - android
-  before_script:
-    - echo "Начинаем настройку..."
-    - yes | sdkmanager --licenses
-    # В этом образе SDK уже включает все нужные инструменты, поэтому команды чуть короче
-    - echo "y" | sdkmanager --install "system-images;android-30;default;x86_64"
-    - echo "no" | avdmanager create avd -n ci_device -k "system-images;android-30;default;x86_64" --force
-  script:
-    - echo "Запускаем эмулятор..."
-    - $ANDROID_HOME/emulator/emulator -avd ci_device -no-window -no-audio -gpu swiftshader_indirect &
-    - adb wait-for-device
-    - echo "Эмулятор готов! Здесь будут твои первые тесты."
-    - sleep 10
-    - echo "Всё работает!"
+Running with gitlab-runner 18.11.2 (68229485)
+  on docker-kvm-runner y1_rnE34d, system ID: r_smsdvX8edeqQ
+Preparing the "docker" executor 00:03
+Using Docker executor with image androidsdk/android-30:latest ...
+Using effective pull policy of [always] for container androidsdk/android-30:latest
+Pulling docker image androidsdk/android-30:latest ...
+Using docker image sha256:77596f360975e139d146ee0f6f0b2760bbbaa0b698bde5e446194a9c348e6c19 for androidsdk/android-30:latest with digest androidsdk/android-30@sha256:77596f360975e139d146ee0f6f0b2760bbbaa0b698bde5e446194a9c348e6c19 ...
+Preparing environment 00:01
+Using effective pull policy of [always] for container sha256:39e9155b72aff010f55a8bbfdb94fedeb0824de18612795d8b901ac4b42d99f5
+Running on runner-y1rne34d-project-1-concurrent-0 via 210b36454142...
+Getting source from Git repository 00:01
+Gitaly correlation ID: 01KR18FJPBBBJ003TMM7MCQTGT
+Fetching changes with git depth set to 20...
+Reinitialized existing Git repository in /builds/root/rzd/.git/
+Created fresh repository.
+Checking out a22e2095 as detached HEAD (ref is main)...
+Skipping Git submodules setup
+Executing "step_script" stage of the job script 00:03
+Using effective pull policy of [always] for container androidsdk/android-30:latest
+Using docker image sha256:77596f360975e139d146ee0f6f0b2760bbbaa0b698bde5e446194a9c348e6c19 for androidsdk/android-30:latest with digest androidsdk/android-30@sha256:77596f360975e139d146ee0f6f0b2760bbbaa0b698bde5e446194a9c348e6c19 ...
+$ echo "Начинаем настройку..."
+Начинаем настройку...
+$ yes | sdkmanager --licenses
+All SDK package licenses accepted.
+Cleaning up project directory and file based variables 00:00
+ERROR: Job failed: exit code 1
